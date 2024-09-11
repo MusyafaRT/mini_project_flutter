@@ -3,6 +3,7 @@
 //     final productList = productListFromJson(jsonString);
 
 import 'dart:convert';
+import 'product_model.dart';
 
 ProductList productListFromJson(String str) =>
     ProductList.fromJson(json.decode(str));
