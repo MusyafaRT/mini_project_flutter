@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:mini_project/views/product_list_screen.dart';
 import 'package:mini_project/views/user_login_screen.dart';
 
 void main() {

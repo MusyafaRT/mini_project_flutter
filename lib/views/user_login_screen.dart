@@ -84,21 +84,56 @@ class _UserLoginState extends State<UserLogin> {
                             ),
                             Container(
                               margin: const EdgeInsets.symmetric(vertical: 10),
-                              child: TextField(
-                                controller: controller.passwordController,
-                                obscureText: true,
-                                style: const TextStyle(color: Colors.white),
-                                decoration: InputDecoration(
-                                  hintText: 'Password',
-                                  hintStyle:
-                                      const TextStyle(color: Colors.white54),
-                                  filled: true,
-                                  fillColor: Colors.white.withOpacity(0.1),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide: BorderSide.none,
+                              child: Stack(
+                                children: [
+                                  Obx(
+                                    () => TextField(
+                                      controller: controller.passwordController,
+                                      obscureText: !controller.isVisible.value,
+                                      style:
+                                          const TextStyle(color: Colors.white),
+                                      decoration: InputDecoration(
+                                        hintText: 'Password',
+                                        hintStyle: const TextStyle(
+                                            color: Colors.white54),
+                                        filled: true,
+                                        fillColor:
+                                            Colors.white.withOpacity(0.1),
+                                        border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide.none,
+                                        ),
+                                        contentPadding:
+                                            const EdgeInsets.symmetric(
+                                                vertical: 15, horizontal: 10),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Positioned(
+                                    right: 0, // Align the icon to the right
+                                    top: 0,
+                                    bottom: 0,
+                                    child: Obx(
+                                      () => GestureDetector(
+                                        onTap: () {
+                                          controller.isVisible.value =
+                                              !controller.isVisible.value;
+                                        },
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(12.0),
+                                          child: Icon(
+                                            controller.isVisible.value
+                                                ? Icons.visibility
+                                                : Icons.visibility_off,
+                                            color:
+                                                Colors.white.withOpacity(0.5),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                             const SizedBox(height: 20),

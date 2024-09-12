@@ -1,13 +1,11 @@
 class LoginResponse {
   final String message;
-  final String status;
 
-  LoginResponse({required this.message, required this.status});
+  LoginResponse({required this.message});
 
   factory LoginResponse.fromJson(Map<String, dynamic> json) {
     return LoginResponse(
       message: json['message'] ?? '',
-      status: json['status'] ?? '',
     );
   }
 }
@@ -20,7 +18,7 @@ class LoginRequest {
 
   Map<String, dynamic> toJson() {
     return {
-      'login': login,
+      'username': login,
       'password': password,
     };
   }
