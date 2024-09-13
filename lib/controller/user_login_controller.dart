@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/models/user_model.dart';
 import 'package:mini_project/services/user_login_services.dart';
-import 'package:mini_project/views/product_list_screen.dart';
 
 class UserLoginController extends GetxController {
   final emailController = TextEditingController();
@@ -12,10 +11,10 @@ class UserLoginController extends GetxController {
   RxBool isVisible = false.obs;
 
   @override
-  void onClose() {
+  void dispose() {
     emailController.dispose();
     passwordController.dispose();
-    super.onClose();
+    super.dispose();
   }
 
   void onLogin() async {
@@ -26,9 +25,11 @@ class UserLoginController extends GetxController {
       loginResponse.value = LoginResponse.fromJson(response);
 
       if (response['message'] == 'Login successful') {
-        Get.to(const ProductScreen());
+        Get.toNamed("/product-list");
         Get.snackbar("Success", "Login successful",
-            backgroundColor: Colors.white, colorText: Colors.black);
+            backgroundColor: Colors.white,
+            colorText: Colors.black,
+            duration: const Duration(seconds: 2));
       } else {
         Get.snackbar("Error: Login Failed", "Wrong email or password",
             backgroundColor: Colors.red, colorText: Colors.white);

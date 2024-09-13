@@ -50,3 +50,15 @@ Future<String> fetchCategoryList() async {
     throw Exception('Failed to load product detail');
   }
 }
+
+Future<Map<String, dynamic>> searchProductService(String q) async {
+  final response = await http.get(
+    Uri.parse('https://dummyjson.com/products/search?q=$q'),
+  );
+
+  if (response.statusCode == 200) {
+    return jsonDecode(response.body);
+  } else {
+    throw Exception('Failed to load product detail');
+  }
+}

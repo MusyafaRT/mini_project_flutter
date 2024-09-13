@@ -55,6 +55,11 @@ class _UserLoginState extends State<UserLogin> {
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
+                            Image.asset(
+                              "assets/images/logo_epm 1.png",
+                              height: 100,
+                              width: 100,
+                            ),
                             const Text(
                               'User Login',
                               style: TextStyle(
@@ -104,9 +109,6 @@ class _UserLoginState extends State<UserLogin> {
                                               BorderRadius.circular(10),
                                           borderSide: BorderSide.none,
                                         ),
-                                        contentPadding:
-                                            const EdgeInsets.symmetric(
-                                                vertical: 15, horizontal: 10),
                                       ),
                                     ),
                                   ),

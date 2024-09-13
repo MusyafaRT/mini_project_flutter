@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:mini_project/models/product/category_product_model.dart';
 import 'package:mini_project/models/product/product_list_model.dart';
@@ -9,6 +10,7 @@ class ProductController extends GetxController {
   var isLoading = false.obs;
   var productList = <Product>[].obs;
   var categoryList = <String>[].obs;
+  TextEditingController searchController = TextEditingController();
   RxString selectedCategory = ''.obs;
   var productDetail = Product(
     id: 0,
@@ -108,6 +110,19 @@ class ProductController extends GetxController {
       // print(productDetail);
     } catch (e) {
       throw Exception('Failed to load product detail');
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> searchProduct(String query) async {
+    isLoading.value = true;
+    try {
+      final response = await searchProductService(query);
+      ProductResponse productResponse = ProductResponse.fromJson(response);
+      productList.assignAll(productResponse.products!);
+    } catch (e) {
+      throw Exception('Failed to load products');
     } finally {
       isLoading.value = false;
     }
